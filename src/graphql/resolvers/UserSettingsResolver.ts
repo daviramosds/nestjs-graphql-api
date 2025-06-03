@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { UserSettingsService } from '../../users/user-settings.service';
 import { UserSetting } from '../models/UserSetting';
 import { CreateUserSettingsInput } from '../utils/CreateUserSettingsInput';
-import { mockUserSettings } from 'src/__mocks__/UserSettiings';
-import { UserSettingsService } from 'src/users/user-settings.service';
 
 @Resolver()
 export class UserSettingsResolver {
