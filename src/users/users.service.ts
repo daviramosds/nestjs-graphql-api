@@ -11,7 +11,7 @@ export class UsersService {
   ) {}
 
   async getUsers() {
-    return await this.usersRepostory.find({ relations: ['settings '] });
+    return await this.usersRepostory.find({ relations: ['settings'] });
   }
 
   async getUsersById(id: number) {

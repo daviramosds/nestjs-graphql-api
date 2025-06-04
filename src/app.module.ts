@@ -21,11 +21,14 @@ import { UsersModule } from './users/users.module';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: configService.get<string>('MYSQL_HOST'), // <-- `get` method is used here
-        port: configService.get<number>('MYSQL_PORT'), // <-- `get` method is used here
+        host: configService.get<string>('MYSQL_HOST'),
+        port: configService.get<number>('MYSQL_PORT'),
         username: configService.get<string>('MYSQL_USERNAME'),
         password: configService.get<string>('MYSQL_PASSWORD'),
-        database: configService.get<string>('MYSQL_DATABASE'),
+        database:
+          process.env.NODE_ENV == 'test'
+            ? configService.get<string>('MYSQL_TEST_DATABASE')
+            : configService.get<string>('MYSQL_DATABASE'),
         entities: [User, UserSetting],
         synchronize: true,
       }),
